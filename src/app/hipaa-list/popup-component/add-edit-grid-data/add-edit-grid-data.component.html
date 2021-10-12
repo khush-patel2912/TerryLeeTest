@@ -1,0 +1,50 @@
+<h2>{{id ? 'Edit' : 'Add New'}} HIPAA Consent</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="pt-4">
+
+  <form
+    nz-form
+    nzLayout="vertical"
+  >
+    <div class="row">
+
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="p-0" [nzSpan]="12" nzRequired nzFor="email">SIGNED:</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker name="signed-date" [(ngModel)]="signedDate" nzFormat="dd/MM/yyyy"
+                            [nzDisabledDate]="disabledSignedDate" [nzInputReadOnly]="true"
+                            (ngModelChange)="onChangeDate($event, SIGNED)"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="col-6">
+        <nz-form-item>
+          <nz-form-label class="p-0" [nzSpan]="12" nzRequired nzFor="email">EXPIRES:</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker name="expires-date" [(ngModel)]="expiresDate" nzFormat="dd/MM/yyyy"
+                            [nzDisabledDate]="disabledExpiresDate" [nzInputReadOnly]="true"
+                            (ngModelChange)="onChangeDate($event, EXPIRES)"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+    </div>
+  </form>
+
+  <div class="p-2 d-flex justify-content-center" *ngIf="error">
+    <div nz-typography nzType="danger" class="m-0">{{error}}</div>
+  </div>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end" class="m-0 pb-0">
+
+  <div class="w-100 d-flex">
+    <div class="flex-fill justify-content-end">
+      <button class="mr-2" mat-raised-button color="accent" cdkFocusInitial nz-button nzType="primary" (click)="upsert()">{{id ? 'Update' : 'Save' }}</button>
+      <button mat-stroked-button color="accent" nz-button nzType="primary" nzDanger [mat-dialog-close]="false">Cancel</button>
+    </div>
+  </div>
+</mat-dialog-actions>

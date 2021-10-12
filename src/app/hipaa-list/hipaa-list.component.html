@@ -1,0 +1,25 @@
+<div class="container py-3">
+  <!-- DISPLAY TITLE WITH ADD DATA BUTTON -->
+  <div class="table-title d-flex align-items-center p-2">
+    <h4 class="m-0">HIPAA</h4>
+    <button class="ml-3" nz-button nzType="primary" nzSize="small" nzShape="circle" (click)="upsertItem()">
+      <i nz-icon nzType="plus"></i>
+    </button>
+  </div>
+
+  <!-- DISPLAY HIPAA LIST WITH AG-GRID -->
+  <div class="grid-title">
+    <ag-grid-angular
+      style="width: 100%;"
+      class="ag-theme-blue"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [frameworkComponents]="frameworkComponents"
+      domLayout="autoHeight"
+      (firstDataRendered)="onFirstDataRendered($event)"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+
+  </div>
+</div>
+
